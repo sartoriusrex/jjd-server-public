@@ -2,8 +2,8 @@ const db = require("../models");
 const mailgun = require("mailgun-js");
 const crypto = require('crypto');
 
-const DOMAIN = process.env.DOMAIN;
-const MG_API_KEY = process.env.MG_API_KEY;
+const DOMAIN = process.env.DOMAIN || "sandbox42042dfa94a14f72a6e0008fbc955c8c.mailgun.org";
+const MG_API_KEY = process.env.MG_API_KEY || "b431024f16aabb5cefeff2d4b83e9cf5-2b0eef4c-f5a43468";
 
 const mg = mailgun({ apiKey: MG_API_KEY, domain: DOMAIN });
 
