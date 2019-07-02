@@ -15,7 +15,7 @@ exports.sendAccountVerificationEmail = async function( accountVerificationToken,
   let verifyLink = `https://jjd-client-v1.herokuapp.com/verifyaccount/${ accountVerificationToken }`
 
   let output = `
-      <h3>Reset Password for ${ email }</h3>
+      <h3>Verify your new account with JJD: ${ email }</h3>
       <p>You are receiving this message because you or someone else has created an account with Jiu Jitsu Distilled (JJD).</p>
       <p>If you did not want to create an account, ignore this e-mail. No one will be able to use your account in your name. If you choose to create an account later, please visit our website.</p>
       <p>To complete Sign Up Process, please click the following link or paste it into your browser. </p>
