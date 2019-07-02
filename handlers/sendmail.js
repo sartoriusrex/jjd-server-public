@@ -12,7 +12,7 @@ const mg = mailgun({ apiKey: MG_API_KEY, domain: DOMAIN });
 exports.sendAccountVerificationEmail = async function( accountVerificationToken, email, res, next ) {
   let subject = "Verify your account with Jiu Jitsu Distilled";
 
-  let verifyLink = `https://jjd-client-v1.herokuapp.com/${ accountVerificationToken }`
+  let verifyLink = `https://jjd-client-v1.herokuapp.com/verifyaccount/${ accountVerificationToken }`
 
   let output = `
       <h3>Reset Password for ${ email }</h3>
