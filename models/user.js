@@ -72,12 +72,14 @@ userSchema.pre("remove", async function( next ){
     // User's techs and seqs are not deleted, but reassigned to new username: deleted. This is done to preserve integrity of other techs or sequences that may references this user's tech or seqs.
     await Technique.update(
       { user: this._id },
-      { user: "5d0dcaf1566d5ca22c8d3be0" }
+      { user: "5d1ba975efb04800045eeacf" } 
+      // This is the generic "Deleted" user's id
     );
 
     await Sequence.update(
       { user: this._id },
-      { user: "5d0dcaf1566d5ca22c8d3be0" }
+      { user: "5d1ba975efb04800045eeacf" }
+      // This is the generic "Deleted" user's id
     );
 
   } catch( err ) {
