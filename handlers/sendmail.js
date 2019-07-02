@@ -3,7 +3,8 @@ const mailgun = require("mailgun-js");
 const crypto = require('crypto');
 
 const DOMAIN = process.env.DOMAIN || "sandbox42042dfa94a14f72a6e0008fbc955c8c.mailgun.org";
-const MG_API_KEY = process.env.MG_API_KEY || "b431024f16aabb5cefeff2d4b83e9cf5-2b0eef4c-f5a43468";
+const MG_API_KEY = process.env.MG_API_KEY || 
+"b431024f16aabb5cefeff2d4b83e9cf5-2b0eef4c-f5a43468";
 
 const mg = mailgun({ apiKey: MG_API_KEY, domain: DOMAIN });
 
@@ -11,7 +12,7 @@ const mg = mailgun({ apiKey: MG_API_KEY, domain: DOMAIN });
 exports.sendAccountVerificationEmail = async function( accountVerificationToken, email, res, next ) {
   let subject = "Verify your account with Jiu Jitsu Distilled";
 
-  let verifyLink = `http://localhost:3000/verifyaccount/${ accountVerificationToken }`
+  let verifyLink = `https://jjd-client-v1.herokuapp.com/${ accountVerificationToken }`
 
   let output = `
       <h3>Reset Password for ${ email }</h3>
@@ -105,7 +106,7 @@ exports.sendResetPasswordEmail = async function( req, res, next ){
     let token = crypto.randomBytes(20).toString('hex');
     let email = req.body.email;
     let subject = "Request to Reset Password for Jiu Jitsu Distilled";
-    const resetLink = `http://localhost:3000/resetpassword/${ token }`
+    const resetLink = `https://jjd-client-v1.herokuapp.com/resetpassword/${ token }`
     
     let foundUser = await db.User.findOneAndUpdate(
       { email: email },
