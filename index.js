@@ -11,6 +11,7 @@ const openTechniquesRoutes = require("./routes/openTechniques");
 const openSequencesRoutes = require("./routes/openSequences");
 const addRefRoutes = require("./routes/addRef");
 const likeRoutes = require("./routes/like");
+const shareRoutes = require("./routes/share");
 const sendMessageRoutes = require("./routes/sendMessage");
 const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
 
@@ -56,6 +57,12 @@ app.use(
   "/api/users/:id/like",
   loginRequired,
   likeRoutes
+)
+
+app.use(
+  "/api/users/:id/share",
+  loginRequired,
+  shareRoutes
 )
 
 app.use(

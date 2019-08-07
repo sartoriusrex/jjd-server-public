@@ -100,6 +100,53 @@ exports.sendFeedback = async function( req, res, next ){
   });
 }
 
+exports.shareItem = async function( req, res, next ) {
+  let to = req.body.email;
+  let techName = req.body.techName;
+  let techId = req.body.techId;
+  let seqName = req.body.seqName;
+  let seqId = req.body.seqId;
+  let username = req.body.username;
+  let subject = `${ username } sent you a message from Jiu Jitsu Distilled`
+  let link;
+  let item;
+  
+  if ( techId ) {
+    link = `https://jjd-client-v1.herokuapp.com/techniques/${ techId }`;
+    item = techName;
+  } else { 
+    link = `https://jjd-client-v1.herokuapp.com/sequences/${ seqId }`;
+    item = seqName;
+  }
+
+  let output = `
+    <h2>${ username } shared a technique or a sequence with you.</h2>
+    <a href=${ link }>Go to ${ item }</a>
+  `;
+
+  let data = {
+    from: 'JJD Admin <admin.jjd@jjd.com>',
+    to: to,
+    subject: subject,
+    html: output
+  };
+
+  mg.messages().send( data, function ( error, body ) {
+    if ( error ) {
+      console.log( error );
+      next( error );
+    }
+
+    console.log("===========================");
+    console.log( body );
+    console.log("===========================");
+
+    res.status( 200 ).json({
+      message: "Your Message has been successfully sent."
+    });
+  });
+}
+
 exports.sendResetPasswordEmail = async function( req, res, next ){
   try{
     let token = crypto.randomBytes(20).toString('hex');
