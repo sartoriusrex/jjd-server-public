@@ -1,5 +1,13 @@
 #Change Log
 
+## 06/08/2019
+
+### Add Share Feature
+
+1. Users can now share via email Techniques or Sequences when they are logged in.
+
+============================================================
+
 ## 02/08/2019
 
 ### Change Log Creation
