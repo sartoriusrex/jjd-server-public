@@ -112,17 +112,16 @@ exports.shareItem = async function( req, res, next ) {
   let item;
   
   if ( techId ) {
-    link = `localhost:3000/techniques/${ techId }`;
+    link = `https://jjd-client-v1.herokuapp.com/techniques/${ techId }`;
     item = techName;
   } else { 
-    link = `localhost:3000/sequences/${ seqId }`;
+    link = `https://jjd-client-v1.herokuapp.com/sequences/${ seqId }`;
     item = seqName;
   }
 
   let output = `
     <h2>${ username } shared a technique or a sequence with you.</h2>
-    <h4>Link to ${ item }</h4>
-    <p>${ link }</p>
+    <a href=${ link }>Go to ${ item }</a>
   `;
 
   let data = {
