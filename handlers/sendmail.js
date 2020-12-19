@@ -31,9 +31,6 @@ exports.sendAccountVerificationEmail = async function( accountVerificationToken,
 
   mg.messages().send( data, function ( error, body ) {
     if ( error ) {
-      console.log(error);
-      console.log(body);
-
       if( body.message === "'to' parameter is not a valid address. please check documentation" ) {
         let error = {}
         error.message = "That is not a valid e-mail address"
@@ -43,10 +40,6 @@ exports.sendAccountVerificationEmail = async function( accountVerificationToken,
 
       next( body );
     } else {
-      console.log("===========================");
-      console.log( body );
-      console.log("===========================");
-  
       res.status( 200 ).json({
         message: "Account Verification E-mail Has Been Sent. Please check your e-mail for further instructions."
       });
